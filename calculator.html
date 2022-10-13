@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{
+            height: 100%;
+        }
+        textarea{
+            text-align: right;
+            font-size: 2.4rem;
+            resize: none;
+        }
+        .container{
+            text-align: center;
+            border:solid;
+        }
+        body{
+            display: flex;
+            border: solid;
+            justify-content: center;
+            height: 100%;
+            align-items: center;
+        }
+        #grid{
+            display: grid;
+           grid-template-columns: auto auto auto auto;
+        }
+        .btn,.btn-clear,.btn-remove,.btn-equal{
+            font-size: 2rem;
+            height: 2.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <textarea name="" placeholder="0" id="areas" cols="14" rows="3"></textarea>
+        <div id="grid">
+            <button class="btn-clear" onclick="cleard()">C</button>
+            <button class="btn" onclick="display(`%`)">%</button>
+            <button class="btn-remove" onclick="remove()">←</button>
+            <button class="btn" onclick="display(`/`)">/</button>
+            <button class="btn" onclick="display(7)" >7</button>
+            <button class="btn" onclick="display(8)">8</button>
+            <button class="btn" onclick="display(9)">9</button>
+            <button class="btn" onclick="display(`*`)">*</button>
+            <button class="btn" onclick="display(4)">4</button>
+            <button class="btn" onclick="display(5)">5</button>
+            <button class="btn" onclick="display(6)">6</button>
+            <button class="btn" onclick="display(`-`)">-</button>
+            <button class="btn" onclick="display(1)">1</button>
+            <button class="btn" onclick="display(2)">2</button>
+            <button class="btn" onclick="display(3)">3</button>
+            <button class="btn" onclick="display(`+`)">+</button>
+            <button class="btn" onclick="display(`00`)">00</button>
+            <button class="btn" onclick="display(0)">0</button>
+            <button class="btn" onclick="display(`.`)">.</button>
+            <button class="btn-equal" onclick="calculate(`=`)">=</button>
+        </div>
+    </div>
+    <script>
+       
+         function display(val){
+            const display = document.querySelector('#areas')
+            display.value+=val
+        }
+
+        function calculate(){
+            try {
+                const display = document.querySelector('#areas')
+                display.value = eval(display.value)
+            } catch (error) {
+                const display = document.querySelector('#areas')
+                display.value = 'error'
+            }
+        }
+
+        function remove(){
+            const display = document.querySelector('#areas')
+            display.value = display.value.slice(0,-1);
+        }
+
+        const clear = document.querySelector(".btn-clear")
+        clear.addEventListener('click',()=> document.querySelector('#areas').value = '')
+       
+        
+    </script>
+</body>
+</html>
